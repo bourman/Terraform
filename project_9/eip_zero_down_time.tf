@@ -27,9 +27,8 @@ resource "aws_instance" "My_webserver" {
     Owner = "Victor Bourman"
   }
   lifecycle {
-    ignore_changes = [user_data]
-    #now when someone will try to change the user data and run the command apply it will block him but
-    #if we will make antoher change it will work like add on "names new name"
+    create_before_destroy = true
+
   }
 }
 #first my Security Group will created, then the resource aws_instance will be created.
